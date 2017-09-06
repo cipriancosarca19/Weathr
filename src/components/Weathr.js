@@ -1,13 +1,8 @@
 import React from 'react';
+import * as deep from 'utils/deep';
 
 class Weathr extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      geoQuery: '',
-    };
-  }
+  updateStateByPath = (path, value) => this.setState((prevState, props) => deep.set(prevState, path, value));
 
   render() {
     return (
