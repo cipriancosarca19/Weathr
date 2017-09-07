@@ -3,13 +3,8 @@
   "homepage": "https://mannie-faux.github.io/weathr",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "lodash": "^4.17.4",
-    "normalize.css": "^7.0.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
-  },
+  "author": "Manpreet \"Mannie\" Singh",
+  "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_PATH=./src react-scripts start",
     "build": "cross-env NODE_PATH=./src react-scripts build",
@@ -17,6 +12,13 @@
     "predeploy": "cross-env NODE_PATH=./src yarn build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "normalize.css": "^7.0.0",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.13"
   },
   "devDependencies": {
     "cross-env": "^5.0.5",
