@@ -1,0 +1,13 @@
+{
+  "name": "weathr-back-end",
+  "version": "0.1.0",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "node app/index.js"
+  },
+  "author": "Manpreet \"Mannie\" Singh",
+  "license": "MIT",
+  "dependencies": {
+    "hapi": "^16.5.2"
+  }
+}
