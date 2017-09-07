@@ -1,25 +1,5 @@
 {
-  "name": "weathr",
-  "homepage": "https://mannie-faux.github.io/weathr",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "gh-pages": "^1.0.0",
-    "lodash": "^4.17.4",
-    "normalize.css": "^7.0.0",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
-  },
-  "scripts": {
-    "start": "cross-env NODE_PATH=./src react-scripts start",
-    "build": "cross-env NODE_PATH=./src react-scripts build",
-    "test": "cross-env NODE_PATH=./src react-scripts test --env=jsdom",
-    "predeploy": "cross-env NODE_PATH=./src yarn build",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
-  },
-  "devDependencies": {
-    "cross-env": "^5.0.5"
-  }
+	"devDependencies": {
+		"lerna": "^2.1.2"
+	}
 }
