@@ -12,7 +12,7 @@ weathr.connection({
 
 weathr.route({
   method: 'GET',
-  path: '/weathr/{locationQuery}/{units?}',
+  path: '/forecast/{locationQuery}/{units?}',
   handler: (request, reply) => {
     log.info(`[SERVER]: GET ${request.url.path}`);
 
