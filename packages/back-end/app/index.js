@@ -6,7 +6,7 @@ const API = require('./api');
 
 const weathr = new Hapi.Server();
 weathr.connection({
-  port: 3001,
+  port: process.env.PORT || 3000,
   host: '0.0.0.0',
 });
 
