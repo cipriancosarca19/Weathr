@@ -9,6 +9,7 @@
     "start": "node app/index.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "hapi": "^16.5.2"
   }
 }
