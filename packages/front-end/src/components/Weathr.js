@@ -9,8 +9,21 @@ class Weathr extends React.Component {
 
     this.state = {
       query: '',
-      forecast: {},
+      data: {},
     };
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    const currQuery = this.state.query;
+    const nextQuery = nextState.query;
+
+    if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
+  }
+
+  getForecast = query => {
+    fetch(`https://mannie-faux-weathr.herokuapp.com/forecast/${query}`)
+      .then(response => response.json())
+      .then(data => updateStateByPath(this, 'data', data));
   }
 
   render() {
