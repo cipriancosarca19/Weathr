@@ -13,7 +13,6 @@ class Weathr extends React.Component {
     this.state = {
       query: '',
       data: {},
-      isGeoInputDirty: false,
     };
   }
 
@@ -21,10 +20,7 @@ class Weathr extends React.Component {
     const currQuery = this.state.query;
     const nextQuery = nextState.query;
 
-    if (nextQuery) {
-      if (!this.state.isGeoInputDirty) updateStateByPath(this, 'isGeoInputDirty', true);
-      if (nextQuery !== currQuery) this.getForecast(nextQuery);
-    }
+    if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
   }
 
   getForecast = query => {
@@ -40,7 +36,6 @@ class Weathr extends React.Component {
           <Title>Weathr</Title>
           <GeoInput
             onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
-            dirty={this.state.isGeoInputDirty}
           />
         </Content>
       </AppContainer>

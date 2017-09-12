@@ -40,32 +40,25 @@ class GeoInput extends React.Component {
     if (this.props.onSelect) this.props.onSelect(value);
   }
 
-  renderSelect = () => (
-    <Select.Async
-      value={this.state.value}
-      onChange={this.onChange}
-      loadOptions={getSuggestions}
-      autoload={false}
-      placeholder=''
-      searchPromptText='Search for a place...'
-    />
-  );
-
   render() {
     return (
-      this.props.dirty ? this.renderSelect() : (
-        <div>
-          <InfoText>Where would you like to assert your powers as a climate god?</InfoText>
-          {this.renderSelect()}        
-        </div>
-      )
+      <div>
+        <InfoText>Where would you like to assert your power as a climate god?</InfoText>
+        <Select.Async
+          value={this.state.value}
+          onChange={this.onChange}
+          loadOptions={getSuggestions}
+          autoload={false}
+          placeholder=''
+          searchPromptText='Search for a place...'
+        />
+      </div>
     );
   }
 }
 
 GeoInput.propTypes = {
   onSelect: PropTypes.func,
-  dirty: PropTypes.bool.isRequired,
 };
 
 export default GeoInput;

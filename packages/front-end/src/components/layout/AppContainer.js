@@ -10,19 +10,16 @@ const AppContainer = styled.div`
   &:before {
     content: '';
 
-    position: absolute;
+    position: fixed;
     z-index: -1;
     top: 0;
     left: 0;
 
-    width: 100%;
+    width: 100vw;
     height: 100vh;
 
     background: no-repeat center center url(${BackgroundImage});
     background-size: cover;
-    background-attachment: fixed;
-
-    filter: blur(2px);
   }
 `;
 
