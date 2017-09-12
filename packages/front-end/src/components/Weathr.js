@@ -1,12 +1,25 @@
 import React from 'react';
-import * as deep from 'utils/deep';
+import updateStateByPath from 'utils/updateStateByPath';
+
+import GeoInput from './GeoInput';
 
 class Weathr extends React.Component {
-  updateStateByPath = (path, value) => this.setState((prevState, props) => deep.set(prevState, path, value));
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      query: '',
+      forecast: {},
+    };
+  }
 
   render() {
     return (
-      <div>Hello, Weathr!</div>
+      <div>
+        <GeoInput
+          onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
+        />
+      </div>
     );
   }
 }
