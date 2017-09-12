@@ -3,7 +3,7 @@
     "deploy:back": "git subtree push --prefix packages/back-end heroku master",
     "deploy:front": "cd packages/front-end && npm run deploy"
   },
-	"devDependencies": {
-		"lerna": "^2.1.2"
-	}
+  "devDependencies": {
+    "lerna": "^2.1.2"
+  }
 }

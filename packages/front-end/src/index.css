@@ -1,2 +1,18 @@
 @import '~normalize.css';
 @import '~react-select/dist/react-select.css';
+@import url('https://fonts.googleapis.com/css?family=Arbutus+Slab|Roboto');
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+}

@@ -1,6 +1,9 @@
 import React from 'react';
 import updateStateByPath from 'utils/updateStateByPath';
 
+import AppContainer from './layout/AppContainer';
+import Content from './layout/Content';
+import Title from './layout/Title';
 import GeoInput from './GeoInput';
 
 class Weathr extends React.Component {
@@ -10,6 +13,7 @@ class Weathr extends React.Component {
     this.state = {
       query: '',
       data: {},
+      isGeoInputDirty: false,
     };
   }
 
@@ -17,7 +21,10 @@ class Weathr extends React.Component {
     const currQuery = this.state.query;
     const nextQuery = nextState.query;
 
-    if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
+    if (nextQuery) {
+      if (!this.state.isGeoInputDirty) updateStateByPath(this, 'isGeoInputDirty', true);
+      if (nextQuery !== currQuery) this.getForecast(nextQuery);
+    }
   }
 
   getForecast = query => {
@@ -28,11 +35,15 @@ class Weathr extends React.Component {
 
   render() {
     return (
-      <div>
-        <GeoInput
-          onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
-        />
-      </div>
+      <AppContainer>
+        <Content>
+          <Title>Weathr</Title>
+          <GeoInput
+            onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
+            dirty={this.state.isGeoInputDirty}
+          />
+        </Content>
+      </AppContainer>
     );
   }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-
 import updateStateByPath from 'utils/updateStateByPath';
+
+import InfoText from './InfoText';
 
 const getPlacesURL = input =>
   `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&input=${input}`;
@@ -39,22 +40,32 @@ class GeoInput extends React.Component {
     if (this.props.onSelect) this.props.onSelect(value);
   }
 
+  renderSelect = () => (
+    <Select.Async
+      value={this.state.value}
+      onChange={this.onChange}
+      loadOptions={getSuggestions}
+      autoload={false}
+      placeholder=''
+      searchPromptText='Search for a place...'
+    />
+  );
+
   render() {
     return (
-      <Select.Async
-        value={this.state.value}
-        onChange={this.onChange}
-        loadOptions={getSuggestions}
-        autoload={false}
-        placeholder=''
-        searchPromptText='Search for a place...'
-      />
+      this.props.dirty ? this.renderSelect() : (
+        <div>
+          <InfoText>Where would you like to assert your powers as a climate god?</InfoText>
+          {this.renderSelect()}        
+        </div>
+      )
     );
   }
 }
 
 GeoInput.propTypes = {
   onSelect: PropTypes.func,
+  dirty: PropTypes.bool.isRequired,
 };
 
 export default GeoInput;
