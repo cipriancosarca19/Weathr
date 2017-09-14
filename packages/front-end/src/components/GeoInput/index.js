@@ -31,7 +31,7 @@ class GeoInput extends React.Component {
     super(props);
 
     this.state = {
-      value: {},
+      value: null,
     };
   }
 
@@ -49,8 +49,9 @@ class GeoInput extends React.Component {
           onChange={this.onChange}
           loadOptions={getSuggestions}
           autoload={false}
-          placeholder=''
-          searchPromptText='Search for a place...'
+          placeholder='Search for a location'
+          loadingPlaceholder='Getting suggestions...'
+          arrowRenderer={(...args) => null}
         />
       </div>
     );
