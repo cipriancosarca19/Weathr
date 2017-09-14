@@ -11,8 +11,8 @@ class Weathr extends React.Component {
     super(props);
 
     this.state = {
-      query: '',
-      data: {},
+      query: null,
+      data: null,
     };
   }
 
@@ -29,6 +29,10 @@ class Weathr extends React.Component {
       .then(data => updateStateByPath(this, 'data', data));
   }
 
+  renderForecast = () => {
+    return <h1>Forecast, baby.</h1>;
+  }
+
   render() {
     return (
       <AppContainer>
@@ -37,6 +41,7 @@ class Weathr extends React.Component {
           <GeoInput
             onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
           />
+          {this.state.data ? this.renderForecast() : null}
         </Content>
       </AppContainer>
     );
