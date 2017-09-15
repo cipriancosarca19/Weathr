@@ -1,6 +1,6 @@
 @import '~normalize.css';
 @import '~react-select/dist/react-select.css';
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700|Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:300,700|Indie+Flower');
 
 *,
 *:before,
@@ -13,6 +13,6 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;
 }

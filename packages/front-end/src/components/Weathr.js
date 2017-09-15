@@ -12,21 +12,24 @@ class Weathr extends React.Component {
 
     this.state = {
       query: null,
-      data: null,
+      forecast: {
+        isLoading: false,
+        data: null,
+      },
     };
   }
 
   componentWillUpdate(nextProps, nextState) {
     const currQuery = this.state.query;
     const nextQuery = nextState.query;
-
     if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
   }
 
   getForecast = query => {
+    updateStateByPath(this, 'forecast', { isLoading: true, data: null });
     fetch(`https://mannie-faux-weathr.herokuapp.com/forecast/${query}`)
       .then(response => response.json())
-      .then(data => updateStateByPath(this, 'data', data));
+      .then(data => updateStateByPath(this, 'forecast', { isLoading: false, data }));
   }
 
   renderForecast = () => {
@@ -41,7 +44,7 @@ class Weathr extends React.Component {
           <GeoInput
             onSelect={newSelection => updateStateByPath(this, 'query', newSelection ? newSelection.value : '')}
           />
-          {this.state.data ? this.renderForecast() : null}
+          {this.state.forecast.data ? this.renderForecast() : null}
         </Content>
       </AppContainer>
     );
