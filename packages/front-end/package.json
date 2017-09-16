@@ -16,13 +16,14 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "normalize.css": "^7.0.0",
+    "palx": "^1.0.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-scripts": "1.0.13",
     "react-select": "^1.0.0-rc.7",
-    "styled-components": "^2.1.2",
-    "styled-media-query": "^2.0.1"
+    "rebass": "^1.0.4",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "cross-env": "^5.0.5",

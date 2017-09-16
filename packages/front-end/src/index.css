@@ -1,6 +1,6 @@
 @import '~normalize.css';
 @import '~react-select/dist/react-select.css';
-@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:300,700|Indie+Flower');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Indie+Flower|Inconsolata');
 
 *,
 *:before,
@@ -9,10 +9,15 @@
 }
 
 html {
+  width: 100vw;
+  min-height: 100vh;
+  
+  background: linear-gradient(-30deg, #FAC9B5, #FDA6C4);
+  background-attachment: fixed;
+
   font-size: 62.5%;
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
   font-size: 1.6rem;
 }

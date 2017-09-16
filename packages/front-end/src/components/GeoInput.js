@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import updateStateByPath from 'utils/updateStateByPath';
 
-import InfoText from './InfoText';
+import updateStateByPath from 'utils/updateStateByPath';
 
 const getPlacesURL = input =>
   `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&input=${input}`;
@@ -43,7 +42,6 @@ class GeoInput extends React.Component {
   render() {
     return (
       <div>
-        <InfoText>Where would you like to assert your power as a climate god?</InfoText>
         <Select.Async
           value={this.state.value}
           onChange={this.onChange}
