@@ -3,6 +3,8 @@ A React-based front-end for Weathr.
 
 Live @ https://mannie-faux.github.io/weathr/
 
+Check out [docs/create-react-app.md](docs/create-react-app.md) for Create React App's pre-generated `README.md` which contains helpful information regarding the boilerplate system and methods of extension and modification.
+
 ---
 
 ## Notes
