@@ -1,3 +1,9 @@
+<p align="center">
+    <img src="packages/front-end/src/assets/images/logo/weathr_sun.png" alt="Weathr Sun" />
+    <br />
+    <img src="packages/front-end/src/assets/images/logo/weathr_text.png" alt="Weathr" />
+</p>
+
 # Weathr :cloud:
 Just another fancy-schmancy weather-forecast-as-a-portfolio-piece application.
 

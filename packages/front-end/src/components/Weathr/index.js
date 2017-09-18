@@ -1,11 +1,16 @@
 import React from 'react';
 import {
   Provider,
+  Container,
+  Text,
 } from 'rebass';
 
 import updateStateByPath from 'utils/updateStateByPath';
 import theme from 'theme';
 import './Weathr.css';
+
+import WeathrSun from 'assets/images/logo/weathr_sun.png';
+import WeathrText from 'assets/images/logo/weathr_text.png';
 
 class Weathr extends React.Component {
   constructor(props) {
@@ -43,7 +48,13 @@ class Weathr extends React.Component {
   render() {
     return (
       <Provider theme={theme}>
-        <h1>Hello, Weathr!</h1>
+        <Container>
+          <Text center>
+            <img src={WeathrSun} alt="Weathr Sun" />
+            <br />
+            <img src={WeathrText} alt="Weathr Text" />
+          </Text>
+        </Container>
       </Provider>
     );
   }
