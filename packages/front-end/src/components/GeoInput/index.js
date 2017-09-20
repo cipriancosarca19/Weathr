@@ -5,19 +5,8 @@ import updateStateByPath from 'utils/updateStateByPath';
 
 import StyledAsyncSelect from './StyledAsyncSelect';
 
-const getPlacesURL = input =>
-  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&input=${input}`;
-
-/**
- * Fetch geolocation input suggestions from
- * Google Map's Places API, and return them
- * for usage in selection suggestions.
- * 
- * @param   {string}  input
- * @return  {object}
- */
 const getSuggestions = input =>
-  fetch(getPlacesURL(input))
+  fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
     .then(response => response.json())
     .then(data => ({
       options: data.predictions.map(prediction => ({

@@ -6,7 +6,7 @@ const API = require('./api');
 
 const weathr = new Hapi.Server();
 weathr.connection({
-  port: process.env.PORT || 3000,
+  port: process.env.PORT || 2999,
   host: '0.0.0.0',
 });
 
@@ -48,6 +48,26 @@ weathr.route({
       });
   },
 });
+
+weathr.route({
+  method: 'GET',
+  path: '/autocomplete/{locationQuery}',
+  handler: (request, reply) => {
+    log.info(`[SERVER]: GET ${request.url.path}`);
+
+    API.autocomplete(request.params.locationQuery)
+      .then(autocompleteResponse => {
+        reply(autocompleteResponse);
+      })
+      .catch(err => {
+        if (err.message && err.code) {
+          reply(err.message).code(err.code);
+          return;
+        }
+        reply(err).code(500);
+      });
+  }
+})
 
 weathr.start(err => {
   if (err) throw err;
