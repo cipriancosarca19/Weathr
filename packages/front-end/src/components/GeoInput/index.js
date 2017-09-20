@@ -40,7 +40,7 @@ class GeoInput extends React.Component {
         <StyledAsyncSelect
           value={this.state.value}
           onChange={this.onChange}
-          loadOptions={input => input ? getSuggestions(input) : null}
+          loadOptions={getSuggestions}
           autoload={false}
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
