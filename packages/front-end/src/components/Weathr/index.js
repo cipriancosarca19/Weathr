@@ -68,7 +68,7 @@ class Weathr extends React.Component {
     return (
       <Rebass.Provider theme={theme}>
         <StyledContainer>
-          <Header w={this.state.forecast.data ? '100%' : '42rem'}>
+          <Header w={this.state.query ? '100%' : '42rem'}>
             <Rebass.Image
               src={WeathrLogoSun}
               alt='Weathr Logo - Sun'
