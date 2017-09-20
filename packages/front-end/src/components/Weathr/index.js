@@ -1,12 +1,41 @@
 import React from 'react';
+import { injectGlobal } from 'styled-components';
 import * as Rebass from 'rebass';
+import 'normalize.css';
+import 'react-select/dist/react-select.css';
 
 import updateStateByPath from 'utils/updateStateByPath';
 import theme from 'theme';
-import './Weathr.css';
+import WeathrLogoSun from 'assets/images/logo/weathr_sun.png';
+import WeathrLogoText from 'assets/images/logo/weathr_text.png';
 
-import AppContainer from 'components/layout/AppContainer';
+import StyledContainer from 'components/layout/StyledContainer';
+import Header from 'components/layout/Header';
 import GeoInput from 'components/GeoInput';
+
+injectGlobal`
+  @import url('https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:400,700');
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  html {
+    width: 100vw;
+    min-height: 100vh;
+    
+    background: linear-gradient(-30deg, ${theme.colors.base}, ${theme.colors.secondary});
+    background-attachment: fixed;
+
+    font-size: 62.5%;
+  }
+
+  body {
+    font-size: 1.6rem;
+  }
+`;
 
 class Weathr extends React.Component {
   constructor(props) {
@@ -35,23 +64,28 @@ class Weathr extends React.Component {
       .then(data => updateStateByPath(this, 'forecast', { isLoading: false, data }));
   }
 
-  renderForecast = () => {
-    return (
-      <div>
-        <Rebass.Divider color='base' my='2rem' />
-        <h2>Hello, forecast!</h2>
-      </div>
-    );
-  }
-
   render() {
     return (
       <Rebass.Provider theme={theme}>
-        <AppContainer dirty={this.state.forecast.data ? true : false} is='section'>
-          <Rebass.Text f='1.6rem' mb='0.6rem' center>Where would you like to assert your power as a climate god?</Rebass.Text>
-          <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
-          {this.state.forecast.data ? this.renderForecast() : null}
-        </AppContainer>
+        <StyledContainer>
+          <Header w={this.state.forecast.data ? '100%' : '42rem'}>
+            <Rebass.Image
+              src={WeathrLogoSun}
+              alt='Weathr Logo - Sun'
+              w='8rem'
+              mx='auto'
+              pt='1.2rem'
+            />
+            <Rebass.Image
+              src={WeathrLogoText}
+              alt='Weathr Logo - Text'
+              w='12rem'
+              mx='auto'
+              pb='1.2rem'
+            />
+            <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
+          </Header>
+        </StyledContainer>
       </Rebass.Provider>
     );
   }
