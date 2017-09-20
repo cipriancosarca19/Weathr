@@ -10,7 +10,7 @@ const getSuggestions = input =>
     .then(response => response.ok ? response.json() : response.text())
     .then(data => {
       if (typeof data === 'string') return;
-      if (!data.predictions || !data.predicitons.length) return;
+      if (!Array.isArray(data.predictions) || !data.predictions.length) return;
 
       return ({
         options: data.predictions.map(prediction => ({
