@@ -36,7 +36,7 @@ weathr.route({
             });
           })
           .catch(err => {
-            reply(err).code(500)
+            reply(err).code(500);
           });
       })
       .catch(err => {

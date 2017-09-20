@@ -8,7 +8,7 @@ const buildGeocodeURL = locationQuery =>
 const buildForecastURL = (lat, lng, units) =>
   `https://api.darksky.net/forecast/9c05b6662a30448a33162cc584b4a264/${lat},${lng}?units=${units}`;
 
-const buildGoogleError = status => {
+const buildGoogleError = (status, locationQuery) => {
   let message;
   let code;
 
@@ -42,13 +42,15 @@ const autocomplete = locationQuery =>
       .then(response => {
         const status = response.data.status;
         if (status !== 'OK') {
-          const { message, code } = buildGoogleError(status);
+          const { message, code } = buildGoogleError(status, locationQuery);
           
           log.error(`[API]: Autocomplete request failed: ${message}`);
           reject({
             message,
             code,
           });
+
+          return;
         }
 
         log.success(`[API]: Autocomplete request succeeded`);
@@ -68,13 +70,15 @@ const geocode = locationQuery =>
       .then(response => {
         const status = response.data.status;
         if (status !== 'OK') {
-          const { message, code } = buildGoogleError(status);
+          const { message, code } = buildGoogleError(status, locationQuery);
 
           log.error(`[API]: Geocode request failed: ${message}`);
           reject({
             message,
             code,
           });
+
+          return;
         }
 
         log.success(`[API]: Geocode request succeeded`);
