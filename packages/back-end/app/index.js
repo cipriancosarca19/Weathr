@@ -8,6 +8,7 @@ const weathr = new Hapi.Server();
 weathr.connection({
   port: process.env.PORT || 2999,
   host: '0.0.0.0',
+  routes: { cors: true },
 });
 
 weathr.route({
