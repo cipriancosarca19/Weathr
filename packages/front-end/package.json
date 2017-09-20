@@ -6,9 +6,9 @@
   "author": "Manpreet \"Mannie\" Singh",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_PATH=./src react-scripts start",
+    "start": "cross-env NODE_PATH=./src HTTPS=true react-scripts start",
     "build": "cross-env NODE_PATH=./src react-scripts build",
-    "test": "cross-env NODE_PATH=./src react-scripts test --env=jsdom",
+    "test": "cross-env NODE_PATH=./src HTTPS=true react-scripts test --env=jsdom",
     "predeploy": "cross-env NODE_PATH=./src yarn build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
