@@ -5,8 +5,10 @@ import updateStateByPath from 'utils/updateStateByPath';
 
 import StyledAsyncSelect from './StyledAsyncSelect';
 
-const getSuggestions = input =>
-  fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
+const getSuggestions = input => {
+  if (!input) return { options: [] };
+
+  return fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
     .then(response => response.json())
     .then(data => ({
       options: data.predictions.map(prediction => ({
@@ -14,6 +16,7 @@ const getSuggestions = input =>
         label: prediction.description,
       })),
     }));
+}
 
 class GeoInput extends React.Component {
   constructor(props) {

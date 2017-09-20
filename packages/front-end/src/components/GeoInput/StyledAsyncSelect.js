@@ -19,7 +19,8 @@ export default styled(Select.Async)`
       display: none;
     }
 
-    .Select-clear-zone {
+    .Select-clear-zone,
+    .Select-loading-zone {
       padding-right: 0.5rem;
     }
   }
