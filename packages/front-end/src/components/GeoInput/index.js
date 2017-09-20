@@ -5,18 +5,20 @@ import updateStateByPath from 'utils/updateStateByPath';
 
 import StyledAsyncSelect from './StyledAsyncSelect';
 
-const getSuggestions = input => {
-  if (!input) return { options: [] };
+const getSuggestions = input =>
+  fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
+    .then(response => response.ok ? response.json() : response.text())
+    .then(data => {
+      if (typeof data === 'string') return;
+      if (!data.predictions || !data.predicitons.length) return;
 
-  return fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
-    .then(response => response.json())
-    .then(data => ({
-      options: data.predictions.map(prediction => ({
-        value: prediction.description,
-        label: prediction.description,
-      })),
-    }));
-}
+      return ({
+        options: data.predictions.map(prediction => ({
+          value: prediction.description,
+          label: prediction.description,
+        })),
+      });
+    });
 
 class GeoInput extends React.Component {
   constructor(props) {
@@ -38,10 +40,11 @@ class GeoInput extends React.Component {
         <StyledAsyncSelect
           value={this.state.value}
           onChange={this.onChange}
-          loadOptions={getSuggestions}
+          loadOptions={input => input ? getSuggestions(input) : null}
           autoload={false}
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
+          noResultsText='Location not found'
         />
       </div>
     );
