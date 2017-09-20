@@ -48,6 +48,7 @@ class Weathr extends React.Component {
     return (
       <Rebass.Provider theme={theme}>
         <AppContainer dirty={this.state.forecast.data ? true : false} is='section'>
+          <Rebass.Text f='1.6rem' mb='0.6rem' center>Where would you like to assert your power as a climate god?</Rebass.Text>
           <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
           {this.state.forecast.data ? this.renderForecast() : null}
         </AppContainer>

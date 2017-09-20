@@ -15,7 +15,6 @@ const AppContainer = styled(({children, dirty, ...rest}) => (
         <img src={WeathrLogoText} alt='Weathr Logo - Text' />
       </div>
       {!dirty ? <Rebass.Divider color='base' mb='2rem' /> : null}
-      <Rebass.Heading f='1.8rem' mb='2rem' center>Where would you like to assert your power as a climate god?</Rebass.Heading>
       {children}
     </Rebass.Card>
   </Rebass.Container>
