@@ -24,6 +24,15 @@ const MaximizeHeader = keyframes`
     transform: translate(-50%, -50%);
   }
 
+  40% {
+    width: ${SET_WIDTH};
+
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -5%);
+  }
+
   50% {
     width: ${SET_WIDTH};
 
@@ -44,6 +53,14 @@ const MaximizeHeader = keyframes`
 
   80% {
     width: ${SET_WIDTH};
+    margin: 0 auto;
+
+    position: static;
+    transform: none;
+  }
+
+  95% {
+    width: 95%;
     margin: 0 auto;
 
     position: static;
