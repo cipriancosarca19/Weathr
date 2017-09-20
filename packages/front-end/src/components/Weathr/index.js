@@ -1,29 +1,19 @@
 import React from 'react';
-import {
-  Provider,
-  Container,
-  Text,
-} from 'rebass';
+import * as Rebass from 'rebass';
 
 import updateStateByPath from 'utils/updateStateByPath';
 import theme from 'theme';
 import './Weathr.css';
 
-import WeathrSun from 'assets/images/logo/weathr_sun.png';
-import WeathrText from 'assets/images/logo/weathr_text.png';
+import AppContainer from 'components/layout/AppContainer';
+import GeoInput from 'components/GeoInput';
 
 class Weathr extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      query: {
-        search: {
-          value: null,
-          suggestions: null,
-        },
-        value: null,
-      },
+      query: null,
       forecast: {
         isLoading: false,
         data: null,
@@ -33,29 +23,35 @@ class Weathr extends React.Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    const currQuery = this.state.query.value;
-    const nextQuery = nextState.query.value;
+    const currQuery = this.state.query;
+    const nextQuery = nextState.query;
     if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
   }
 
   getForecast = query => {
-    updateStateByPath(this, 'forecast', { isLoading: true, data: null });
+    updateStateByPath(this, 'forecast.isLoading', true);
     fetch(`https://mannie-faux-weathr.herokuapp.com/forecast/${query}`)
       .then(response => response.json())
       .then(data => updateStateByPath(this, 'forecast', { isLoading: false, data }));
   }
 
+  renderForecast = () => {
+    return (
+      <div>
+        <Rebass.Divider color='base' my='2rem' />
+        <h2>Hello, forecast!</h2>
+      </div>
+    );
+  }
+
   render() {
     return (
-      <Provider theme={theme}>
-        <Container>
-          <Text center>
-            <img src={WeathrSun} alt="Weathr Sun" />
-            <br />
-            <img src={WeathrText} alt="Weathr Text" />
-          </Text>
-        </Container>
-      </Provider>
+      <Rebass.Provider theme={theme}>
+        <AppContainer dirty={this.state.forecast.data ? true : false} is='section'>
+          <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
+          {this.state.forecast.data ? this.renderForecast() : null}
+        </AppContainer>
+      </Rebass.Provider>
     );
   }
 }

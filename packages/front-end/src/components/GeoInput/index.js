@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 
 import updateStateByPath from 'utils/updateStateByPath';
+
+import StyledAsyncSelect from './StyledAsyncSelect';
 
 const getPlacesURL = input =>
   `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&input=${input}`;
@@ -42,14 +43,13 @@ class GeoInput extends React.Component {
   render() {
     return (
       <div>
-        <Select.Async
+        <StyledAsyncSelect
           value={this.state.value}
           onChange={this.onChange}
           loadOptions={getSuggestions}
           autoload={false}
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
-          arrowRenderer={(...args) => null}
         />
       </div>
     );
