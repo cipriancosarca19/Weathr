@@ -7,9 +7,7 @@ import 'react-select/dist/react-select.css';
 import updateStateByPath from 'utils/updateStateByPath';
 import theme from 'theme';
 
-import StyledContainer from 'components/layout/StyledContainer';
-import Header from 'components/layout/Header';
-import * as Logo from 'components/layout/Logo';
+import * as Layout from 'components/Layout';
 import GeoInput from 'components/GeoInput';
 
 injectGlobal`
@@ -66,13 +64,13 @@ class Weathr extends React.Component {
   render() {
     return (
       <Rebass.Provider theme={theme}>
-        <StyledContainer>
-          <Header w={this.state.query ? '100%' : '42rem'}>
-            <Logo.Sun />
-            <Logo.Text>Weathr</Logo.Text>
+        <Layout.StyledContainer>
+          <Layout.Header w={this.state.query ? '100%' : '42rem'}>
+            <Layout.Logo.Sun />
+            <Layout.Logo.Text>Weathr</Layout.Logo.Text>
             <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
-          </Header>
-        </StyledContainer>
+          </Layout.Header>
+        </Layout.StyledContainer>
       </Rebass.Provider>
     );
   }
