@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 
-let SET_WIDTH = '42rem';
+let SET_WIDTH = null;
 
 const ShowHeader = keyframes`
   from {
@@ -14,9 +15,9 @@ const ShowHeader = keyframes`
   }
 `;
 
-const MaximizeHeader = keyframes`
+const MaximizeHeader_Mobile = keyframes`
   0% {
-    width: ${SET_WIDTH};
+    padding: 0 1.6rem;
 
     position: absolute;
     top: 50%;
@@ -24,17 +25,8 @@ const MaximizeHeader = keyframes`
     transform: translate(-50%, -50%);
   }
 
-  40% {
-    width: ${SET_WIDTH};
-
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -5%);
-  }
-
-  50% {
-    width: ${SET_WIDTH};
+  99% {
+    padding: 0 1.6rem;
 
     position: absolute;
     top: 0;
@@ -42,64 +34,100 @@ const MaximizeHeader = keyframes`
     transform: translate(-50%, 0);
   }
 
-  79% {
-    width: ${SET_WIDTH};
-
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
-  80% {
-    width: ${SET_WIDTH};
-    margin: 0 auto;
+  100% {
+    padding: 0;
 
     position: static;
+    top: 0;
+    left: 0;
     transform: none;
   }
+`;
 
-  95% {
-    width: 95%;
-    margin: 0 auto;
+const MaximizeHeader = initialWidth => keyframes`
+  0% {
+    width: ${initialWidth};
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  37% {
+    width: ${initialWidth};
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  38% {
+    width: ${initialWidth};
 
     position: static;
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+  }
+
+  63% {
+    width: ${initialWidth};
+
+    position: static;
+    top: 0;
+    left: 0;
     transform: none;
   }
 
   100% {
     width: 100%;
-    margin: 0 auto;
 
     position: static;
+    top: 0;
+    left: 0;
     transform: none;
   }
 `;
 
 const Header = styled.header`
-  ${props => {
-    if (props.w !== '100%') {
-      SET_WIDTH = props.w;
+  ${({w}) => {
+    if (w !== '100%') {
+      SET_WIDTH = w;
 
       return `
-        width: ${SET_WIDTH};
+        width: 100%;
+        padding: 0 1.6rem;
 
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        opacity: 1;
 
         animation: ${ShowHeader} 0.3s ease-in;
-      `;
-    } else {
-      return `
-        width: 100%;
 
-        animation: ${MaximizeHeader} 0.7s ease-in;
+        @media screen and (min-device-width: ${SET_WIDTH}) {
+          width: ${SET_WIDTH};
+          padding: 0;
+        }
       `;
     }
+
+    return `
+      width: 100%;
+      animation: ${MaximizeHeader_Mobile} 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+      @media screen and (min-device-width: ${SET_WIDTH}) {
+        margin: 0 auto;
+        animation: ${MaximizeHeader(SET_WIDTH)} 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      }
+    `;
   }}
 `;
+
+Header.propTypes = {
+  w: PropTypes.string.isRequired,
+}
 
 export default Header;
