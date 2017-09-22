@@ -66,7 +66,8 @@ const MaximizeHeader = initialWidth => keyframes`
   38% {
     width: ${initialWidth};
 
-    position: static;
+    position: relative;
+    z-index: 3;
     top: 0;
     left: 0;
     transform: translate(0, 0);
@@ -75,7 +76,8 @@ const MaximizeHeader = initialWidth => keyframes`
   63% {
     width: ${initialWidth};
 
-    position: static;
+    position: relative;
+    z-index: 3;
     top: 0;
     left: 0;
     transform: none;
@@ -84,7 +86,8 @@ const MaximizeHeader = initialWidth => keyframes`
   100% {
     width: 100%;
 
-    position: static;
+    position: relative;
+    z-index: 3;
     top: 0;
     left: 0;
     transform: none;
@@ -116,6 +119,9 @@ const Header = styled.header`
 
     return `
       width: 100%;
+      position: relative;
+      z-index: 3;
+
       animation: ${MaximizeHeader_Mobile} 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
       @media screen and (min-device-width: ${SET_WIDTH}) {

@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 
 const ShowWeeklyForecast = keyframes`
   from {
-    transform: translateY(25%);
+    transform: translateY(15%);
     opacity: 0;
   }
 
@@ -17,7 +17,7 @@ const WeeklyForecastWrapper = styled.section`
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   
   position: relative;
-  animation: ${ShowWeeklyForecast} 0.3s ease-out;
+  animation: ${ShowWeeklyForecast} 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 `;
 
 export default WeeklyForecastWrapper;

@@ -9,7 +9,8 @@ import theme from 'theme';
 
 import * as Layout from 'components/Layout';
 import GeoInput from 'components/GeoInput';
-import WeeklyForecast from 'components/WeeklyForecast';
+import WeeklyForecastWrapper from 'components/Layout/WeeklyForecastWrapper';
+import DayForecast from 'components/DayForecast';
 
 import dummyForecast from './dummyForecast';
 
@@ -42,7 +43,7 @@ class Weathr extends React.Component {
     super(props);
 
     this.state = {
-      query: 'Cincinnati, OH',
+      query: 'Cincinnati, OH, US',
       forecast: {
         isLoading: false,
         data: dummyForecast,
@@ -67,10 +68,11 @@ class Weathr extends React.Component {
   renderForecast = () => {
     return (
       <div>
-        <WeeklyForecast
-          location={this.state.forecast.data.location}
-          forecast={this.state.forecast.data.weather.daily}
-        />
+        <WeeklyForecastWrapper>
+          {this.state.forecast.data.weather.daily.data.map(day => (
+            <DayForecast key={day.time} forecast={day} units={this.state.units} />
+          ))}
+        </WeeklyForecastWrapper>
       </div>
     );
   }
