@@ -9,6 +9,9 @@ import theme from 'theme';
 
 import * as Layout from 'components/Layout';
 import GeoInput from 'components/GeoInput';
+import WeeklyForecast from 'components/WeeklyForecast';
+
+import dummyForecast from './dummyForecast';
 
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:400,700');
@@ -39,10 +42,10 @@ class Weathr extends React.Component {
     super(props);
 
     this.state = {
-      query: null,
+      query: 'Cincinnati, OH',
       forecast: {
         isLoading: false,
-        data: null,
+        data: dummyForecast,
       },
       units: 'us',
     };
@@ -61,6 +64,17 @@ class Weathr extends React.Component {
       .then(data => updateStateByPath(this, 'forecast', { isLoading: false, data }));
   }
 
+  renderForecast = () => {
+    return (
+      <div>
+        <WeeklyForecast
+          location={this.state.forecast.data.location}
+          forecast={this.state.forecast.data.weather.daily}
+        />
+      </div>
+    );
+  }
+
   render() {
     return (
       <Rebass.Provider theme={theme}>
@@ -70,6 +84,7 @@ class Weathr extends React.Component {
             <Layout.Logo.Text>Weathr</Layout.Logo.Text>
             <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
           </Layout.Header>
+          {this.state.forecast.isLoading === false && this.state.forecast.data ? this.renderForecast() : null}
         </Layout.StyledContainer>
       </Rebass.Provider>
     );
