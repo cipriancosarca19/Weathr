@@ -1,11 +1,17 @@
-import StyledContainer from './StyledContainer';
-import InlineText from './InlineText';
-import Header from './Header';
 import * as Logo from './Logo';
+import StyledContainer from './StyledContainer';
+import Header from './Header';
+import InlineText from './InlineText';
+import UnitSwitch from './UnitSwitch';
+
+import WeeklyForecastWrapper from './WeeklyForecastWrapper';
 
 export {
-  StyledContainer,
-  InlineText,
-  Header,
   Logo,
+  StyledContainer,
+  Header,
+  InlineText,
+  UnitSwitch,
+
+  WeeklyForecastWrapper,
 };
