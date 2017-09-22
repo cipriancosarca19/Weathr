@@ -6,7 +6,7 @@ const buildAutocompleteURL = locationQuery =>
 const buildGeocodeURL = locationQuery =>
   `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&address=${locationQuery}`;
 const buildForecastURL = (lat, lng, units) =>
-  `https://api.darksky.net/forecast/9c05b6662a30448a33162cc584b4a264/${lat},${lng}?units=${units}`;
+  `https://api.darksky.net/forecast/9c05b6662a30448a33162cc584b4a264/${lat},${lng}?units=${units}&exclude=[minutely,hourly,alerts,flags]`;
 
 const buildGoogleError = (status, locationQuery) => {
   let message;
@@ -101,8 +101,6 @@ const forecast = (lat, lng, units) =>
         log.success(`[API]: Forecast request succeeded`);
         resolve({
           currently: response.data.currently ? response.data.currently : null,
-          minutely: response.data.minutely ? response.data.minutely : null,
-          hourly: response.data.hourly ? response.data.hourly : null,
           daily: response.data.daily ? response.data.daily : null,
         });
       })
