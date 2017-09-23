@@ -56,7 +56,7 @@ const DayForecast = (props) => {
                 f='1.4rem'
                 center
               >
-                {props.forecast.precipProbability * 100}%
+                {Math.round(props.forecast.precipProbability * 100)}%
               </InlineText>
               <InlineText
                 w={1/2}
