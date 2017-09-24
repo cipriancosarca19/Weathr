@@ -1,7 +1,27 @@
 import palx from 'palx';
 
-const colors = palx('#FDA6C4');
-colors.secondary = '#FAC9B5';
-colors.accent = '#FF0041';
+const palette = palx('#FDA6C4');
 
-export default colors;
+const flattened = Object.keys(palette)
+  .reduce((a, key) => {
+    const value = palette[key];
+
+    if (Array.isArray(value)) {
+      a[key] = value[5];
+
+      value.forEach((val, i) => {
+        a[key + i] = val;
+      });
+    } else {
+      a[key] = value;
+    }
+
+    return a;
+  }, {});
+
+export default Object.assign({}, flattened, {
+  black: '#000',
+  white: '#fff',
+  accent: '#FF0041',
+  secondary: '#FAC9B5',
+});

@@ -12,7 +12,7 @@ const StyledForecastBox = styled(Box)`
   transition: background-color 0.2s ease-out;
 
   &:hover {
-    background-color: ${colors.gray[0]};
+    background-color: ${colors.gray0};
   }
 `;
 

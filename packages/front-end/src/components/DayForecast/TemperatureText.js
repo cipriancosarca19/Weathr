@@ -41,7 +41,7 @@ const TemperatureText = styled(({high, low, children, ...rest}) => <Text {...res
     &::before {
       left: 0;
 
-      background-color: ${colors.cyan[5]};
+      background-color: ${colors.cyan};
     }
   ` : null}
 
@@ -49,7 +49,7 @@ const TemperatureText = styled(({high, low, children, ...rest}) => <Text {...res
     &::before {
       right: 0;
 
-      background-color: ${colors.red[5]};
+      background-color: ${colors.red};
     }
   ` : null}
 
