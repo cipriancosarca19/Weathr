@@ -1,6 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { Switch } from 'rebass';
 
+import colors from 'theme/colors';
+
 const ShowUnitSwitch = keyframes`
 from {
   top: -2.4rem;
@@ -12,12 +14,36 @@ to {
 `;
 
 const UnitSwitch = styled(Switch)`
+  border-radius: 0;
+
   position: absolute;
   z-index: 4;
   top: 0;
-  right: 1.6rem;
+  right: 1.7rem;
 
-  animation: ${ShowUnitSwitch} 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  background-color: ${colors.white};
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+  animation: ${ShowUnitSwitch} 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+  &::after {
+    border-radius: 0;
+    background-color: ${colors.base};
+  }
+
+  &::before {
+    content: 'Units\00000A°F/°C';
+    display: block;
+
+    position: absolute;
+    left: 50%;
+    top: 2.6rem;
+    transform: translateX(-50%);
+
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+  }
 `;
 
 export default UnitSwitch;
