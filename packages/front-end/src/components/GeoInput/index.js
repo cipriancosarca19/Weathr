@@ -26,11 +26,20 @@ class GeoInput extends React.Component {
 
     this.state = {
       value: null,
+      prevValue: null,
     };
   }
 
+  onBlur = event => {
+    if (!this.state.value) updateStateByPath(this, 'value', this.state.prevValue);
+  }
+
   onChange = value => {
-    updateStateByPath(this, 'value', value);
+    this.setState((prevState, props) => ({
+      value: value,
+      prevValue: value,
+    }));
+
     if (this.props.onSelect) this.props.onSelect(value);
   }
 
@@ -39,9 +48,12 @@ class GeoInput extends React.Component {
       <div>
         <StyledAsyncSelect
           value={this.state.value}
-          onChange={this.onChange}
           loadOptions={getSuggestions}
+          onChange={this.onChange}
+          onBlur={this.onBlur}
+
           autoload={false}
+
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
           noResultsText='Location not found'
