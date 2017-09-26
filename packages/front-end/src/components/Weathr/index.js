@@ -12,8 +12,6 @@ import * as Layout from 'components/Layout';
 import GeoInput from 'components/GeoInput';
 import DayForecast from 'components/DayForecast';
 
-import dummyForecast from './dummyForecast'; // FIXME: Dummy data -- remove after local testing
-
 injectGlobal`
   @import url('https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:400,700');
 
@@ -43,13 +41,13 @@ class Weathr extends React.Component {
     super(props);
 
     this.state = {
-      query: 'Cincinnati, OH, US', // FIXME: Remove dummy data after local testing
+      query: null,
       forecast: {
         isLoading: false,
         data: {
-          location: dummyForecast.location, // FIXME: Remove dummy data after local testing
-          us: dummyForecast.weather, // FIXME: Remove dummy data after local testing
-          si: convertForecastUnits(dummyForecast.weather), // FIXME: Remove dummy data after local testing
+          location: null,
+          us: null,
+          si: null,
         },
       },
       units: 'us',
@@ -81,6 +79,7 @@ class Weathr extends React.Component {
       <Layout.UnitSwitch
         checked={this.state.units === 'us' ? false : true}
         onClick={e => updateStateByPath(this, 'units', this.state.units === 'us' ? 'si': 'us')}
+        color='black'
       />
     );
   }
