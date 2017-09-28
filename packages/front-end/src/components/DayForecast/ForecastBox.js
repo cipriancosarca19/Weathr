@@ -3,7 +3,7 @@ import { Box } from 'rebass';
 
 import colors from 'theme/colors'
 
-const StyledForecastBox = styled(Box)`
+const ForecastBox = styled(Box)`
   display: inline-block;
   vertical-align: top;
   text-align: center;
@@ -16,4 +16,4 @@ const StyledForecastBox = styled(Box)`
   }
 `;
 
-export default StyledForecastBox;
+export default ForecastBox;

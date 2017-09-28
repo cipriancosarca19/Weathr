@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { Container } from 'rebass';
 
-const StyledContainer = styled(Container)`
+const AppContainer = styled(Container).attrs({ is: 'section' })`
   min-height: 100vh;
   position: relative;
 `;
 
-export default StyledContainer;
+export default AppContainer;

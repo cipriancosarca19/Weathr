@@ -94,7 +94,7 @@ const MaximizeHeader = initialWidth => keyframes`
   }
 `;
 
-const Header = styled.header`
+const AppHeader = styled.header`
   ${({w}) => {
     if (w !== '100%') {
       SET_WIDTH = w;
@@ -132,8 +132,8 @@ const Header = styled.header`
   }}
 `;
 
-Header.propTypes = {
+AppHeader.propTypes = {
   w: PropTypes.string.isRequired,
 }
 
-export default Header;
+export default AppHeader;

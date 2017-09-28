@@ -22,12 +22,12 @@ const UnitSwitch = styled(Switch)`
   right: 1.7rem;
 
   background-color: ${colors.white};
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 2px rgba(0, 0, 0, 0.37);
 
-  animation: ${ShowUnitSwitch} 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: ${ShowUnitSwitch} 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 
   &::after {
-    border-radius: 0;
+    border-radius: 0rem;
     background-color: ${colors.base};
   }
 
@@ -37,10 +37,11 @@ const UnitSwitch = styled(Switch)`
 
     position: absolute;
     left: 50%;
-    top: 2.6rem;
+    top: 2.7rem;
     transform: translateX(-50%);
 
-    font-size: 1.4rem;
+    color: black;
+    font-size: 1.2rem;
     font-weight: bold;
     text-align: center;
   }

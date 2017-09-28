@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
-import LogoSun from 'assets/images/logo/weathr_sun.png';
-import LogoText from 'assets/images/logo/weathr_text.png';
-import LogoSun2X from 'assets/images/logo/weathr_sun@2X.png';
-import LogoText2X from 'assets/images/logo/weathr_text@2X.png';
+import LogoSun from 'assets/images/logo/weathr_sun.svg';
+import LogoText from 'assets/images/logo/weathr_text.svg';
 
 const Sun = styled.div`
   width: 8rem;
@@ -12,10 +10,6 @@ const Sun = styled.div`
   padding-top: 1.2rem;
 
   background: url(${LogoSun}) 0 1.2rem/8rem no-repeat;
-
-  @media screen and (min-device-pixel-ratio: 1.5) {
-    background-image: url(${LogoSun2X});
-  }
 `;
 
 const Text = styled.h1`
@@ -28,10 +22,6 @@ const Text = styled.h1`
   text-indent: -9999px;
 
   background: url(${LogoText}) 0 0/12rem 4rem no-repeat;
-
-  @media screen and (min-device-pixel-ratio: 1.5) {
-    background-image: url(${LogoText2X});
-  }
 `;
 
 export {

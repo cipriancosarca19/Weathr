@@ -2,17 +2,21 @@ import styled from 'styled-components';
 import Select from 'react-select';
 
 export default styled(Select.Async)`
+  height: 3.6rem;
   font-size: 1.4rem;
 
   & > .Select-control {
     border: none;
     border-radius: 0;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
+    
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 
     &:hover {
-      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2),
+                  0 6px 10px 0 rgba(0, 0, 0, 0.3);
     }
 
     .Select-arrow-zone {
@@ -28,7 +32,6 @@ export default styled(Select.Async)`
   & > .Select-menu-outer {
     border: none;
     border-radius: 0;
-    
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   }
 `;

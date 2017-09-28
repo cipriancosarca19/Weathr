@@ -5,41 +5,60 @@ import updateStateByPath from 'utils/updateStateByPath';
 
 import StyledAsyncSelect from './StyledAsyncSelect';
 
-const getSuggestions = input =>
-  fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
-    .then(response => response.ok ? response.json() : response.text())
-    .then(data => {
-      if (typeof data === 'string') return;
-      if (!Array.isArray(data.predictions) || !data.predictions.length) return;
-
-      return ({
-        options: data.predictions.map(prediction => ({
-          value: prediction.description,
-          label: prediction.description,
-        })),
-      });
-    });
-
 class GeoInput extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       value: null,
-      prevValue: null,
     };
   }
 
-  onBlur = event => {
-    if (!this.state.value) updateStateByPath(this, 'value', this.state.prevValue);
-  }
+  getSuggestions = input =>
+    fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
+      .then(response => response.ok ? response.json() : response.status)
+      .then(data => {
+        if (typeof data === 'number') {
+          switch (data) {
+            case 403:
+              return ({
+                options: [{
+                  value: null,
+                  label: 'Query limit reached: Google Maps API\'s query limit has been reached',
+                  disabled: true,
+                }],
+              });
+            case 404:
+              return ({
+                options: [{
+                  value: null,
+                  label: `Location not found: the query ${input} yielded no results`,
+                  disabled: true,
+                }],
+              });
+            default:
+              return ({
+                options: [{
+                  value: null,
+                  label: 'Unknown server error: Google Maps API may be down or not functional',
+                  disabled: true,
+                }],
+              });
+          }
+        }
+        
+        if (!Array.isArray(data.predictions) || !data.predictions.length) return;
+
+        return ({
+          options: data.predictions.map(prediction => ({
+            value: prediction.description,
+            label: prediction.description,
+          })),
+        });
+      });
 
   onChange = value => {
-    this.setState((prevState, props) => ({
-      value: value,
-      prevValue: value,
-    }));
-
+    updateStateByPath(this, 'value', value);
     if (this.props.onSelect) this.props.onSelect(value);
   }
 
@@ -48,9 +67,8 @@ class GeoInput extends React.Component {
       <div>
         <StyledAsyncSelect
           value={this.state.value}
-          loadOptions={getSuggestions}
+          loadOptions={this.getSuggestions}
           onChange={this.onChange}
-          onBlur={this.onBlur}
 
           autoload={false}
 

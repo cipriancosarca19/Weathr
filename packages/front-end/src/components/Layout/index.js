@@ -1,17 +1,25 @@
+import App from './App';
+import AppHeader from './AppHeader';
+import AppContainer from './AppContainer';
+import AppFooter from './AppFooter';
+import ContentContainer from './ContentContainer';
+
 import * as Logo from './Logo';
-import StyledContainer from './StyledContainer';
-import Header from './Header';
+import GitHub from './GitHub';
+
 import InlineText from './InlineText';
 import UnitSwitch from './UnitSwitch';
 
-import WeeklyForecastWrapper from './WeeklyForecastWrapper';
-
 export {
+  App,
+  AppHeader,
+  AppContainer,
+  AppFooter,
+  ContentContainer,
+
   Logo,
-  StyledContainer,
-  Header,
+  GitHub,
+
   InlineText,
   UnitSwitch,
-
-  WeeklyForecastWrapper,
 };

@@ -1,6 +1,10 @@
 import React from 'react';
 import { injectGlobal } from 'styled-components';
-import * as Rebass from 'rebass';
+import {
+  Provider,
+  Divider,
+  Text,
+} from 'rebass';
 import 'normalize.css';
 import 'react-select/dist/react-select.css';
 
@@ -22,12 +26,6 @@ injectGlobal`
   }
 
   html {
-    width: 100vw;
-    min-height: 100vh;
-    
-    background: linear-gradient(-30deg, ${theme.colors.base}, ${theme.colors.secondary});
-    background-attachment: fixed;
-
     font-size: 62.5%;
   }
 
@@ -87,28 +85,36 @@ class Weathr extends React.Component {
   renderForecast = () => {
     return (
       <div>
-        <Layout.WeeklyForecastWrapper>
+        <Layout.ContentContainer>
           {this.state.forecast.data[this.state.units].daily.data.map(day => (
             <DayForecast key={day.time} forecast={day} units={this.state.units} />
           ))}
-        </Layout.WeeklyForecastWrapper>
+        </Layout.ContentContainer>
+        <Layout.AppFooter>
+          <Divider color='secondary' />
+          <Text color='black' mb='0.2rem' is='a' target='_blank' href='https://darksky.net/poweredby/'>Powered by Dark Sky</Text>
+          <br />
+          <Text color='black' is='a' target='_blank' href='https://github.com/mannie-faux/weathr/'>GitHub</Text>
+        </Layout.AppFooter>
       </div>
     );
   }
 
   render() {
     return (
-      <Rebass.Provider theme={theme}>
-        <Layout.StyledContainer>
-          {this.state.forecast.data.location ? this.renderUnitSwitch() : null}
-          <Layout.Header w={this.state.query ? '100%' : '42rem'}>
-            <Layout.Logo.Sun />
-            <Layout.Logo.Text>Weathr</Layout.Logo.Text>
-            <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
-          </Layout.Header>
-          {this.state.forecast.data.location ? this.renderForecast() : null}
-        </Layout.StyledContainer>
-      </Rebass.Provider>
+      <Provider theme={theme}>
+        <Layout.App>
+          <Layout.AppContainer>
+            {this.state.forecast.data.location ? this.renderUnitSwitch() : null}
+            <Layout.AppHeader w={this.state.query ? '100%' : '42rem'}>
+              <Layout.Logo.Sun />
+              <Layout.Logo.Text>Weathr</Layout.Logo.Text>
+              <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
+            </Layout.AppHeader>
+            {this.state.forecast.data[this.state.units] ? this.renderForecast() : null}
+          </Layout.AppContainer>
+        </Layout.App>
+      </Provider>
     );
   }
 }
