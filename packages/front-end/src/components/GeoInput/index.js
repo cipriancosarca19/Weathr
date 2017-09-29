@@ -70,8 +70,6 @@ class GeoInput extends React.Component {
           loadOptions={this.getSuggestions}
           onChange={this.onChange}
 
-          autoload={false}
-
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
           noResultsText='Location not found'
