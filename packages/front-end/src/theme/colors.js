@@ -20,8 +20,10 @@ const flattened = Object.keys(palette)
   }, {});
 
 export default Object.assign({}, flattened, {
-  black: '#000',
-  white: '#fff',
+  black: '#1F1F1F',
+  white: '#FFFFFF',
+
+  darkBase: '#B0627D',
   accent: '#FF0041',
   secondary: '#FAC9B5',
 });

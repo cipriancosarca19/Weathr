@@ -39,7 +39,7 @@ class Weathr extends React.Component {
     super(props);
 
     this.state = {
-      query: null,
+      queryObj: null,
       forecast: {
         isLoading: false,
         data: {
@@ -52,13 +52,27 @@ class Weathr extends React.Component {
     };
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    const currQuery = this.state.query;
-    const nextQuery = nextState.query;
-    if (nextQuery && nextQuery !== currQuery) this.getForecast(nextQuery);
+  componentWillMount() {
+    if ('geolocation' in navigator) this.geolocate();
   }
 
-  getForecast = query => {
+  componentWillUpdate(nextProps, nextState) {
+    const currQueryObj = this.state.queryObj;
+    const nextQueryObj = nextState.queryObj;
+
+    if (!nextQueryObj) return;
+    if (currQueryObj && nextQueryObj.value === currQueryObj.value) return;
+    this.getForecast(nextQueryObj.value);
+  }
+
+  geolocate = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const posStr = `${position.coords.latitude}, ${position.coords.longitude}`;
+      updateStateByPath(this, 'queryObj', { value: posStr, label: posStr });
+    });
+  }
+
+  getForecast = (query=this.state.queryObj.value) => {
     updateStateByPath(this, 'forecast.isLoading', true);
     fetch(`https://mannie-faux-weathr.herokuapp.com/forecast/${query}`)
       .then(response => response.json())
@@ -92,9 +106,9 @@ class Weathr extends React.Component {
         </Layout.ContentContainer>
         <Layout.AppFooter>
           <Divider color='secondary' />
-          <Text color='black' mb='0.2rem' is='a' target='_blank' href='https://darksky.net/poweredby/'>Powered by Dark Sky</Text>
+          <Text color='darkBase' mb='0.2rem' is='a' target='_blank' href='https://darksky.net/poweredby/'>Powered by Dark Sky</Text>
           <br />
-          <Text color='black' is='a' target='_blank' href='https://github.com/mannie-faux/weathr/'>GitHub</Text>
+          <Text color='darkBase' f='1.2rem' is='a' target='_blank' href='https://github.com/mannie-faux/weathr/'>mannie-faux/weathr @ GitHub</Text>
         </Layout.AppFooter>
       </div>
     );
@@ -106,10 +120,12 @@ class Weathr extends React.Component {
         <Layout.App>
           <Layout.AppContainer>
             {this.state.forecast.data.location ? this.renderUnitSwitch() : null}
-            <Layout.AppHeader w={this.state.query ? '100%' : '42rem'}>
-              <Layout.Logo.Sun />
-              <Layout.Logo.Text>Weathr</Layout.Logo.Text>
-              <GeoInput onSelect={selection => selection ? updateStateByPath(this, 'query', selection.value) : null} />
+            <Layout.AppHeader w={this.state.queryObj ? '100%' : '42rem'}>
+              <Layout.Logo />
+              <GeoInput
+                value={this.state.queryObj}
+                onChange={newSelection => newSelection ? updateStateByPath(this, 'queryObj', newSelection) : null}
+              />
             </Layout.AppHeader>
             {this.state.forecast.data[this.state.units] ? this.renderForecast() : null}
           </Layout.AppContainer>

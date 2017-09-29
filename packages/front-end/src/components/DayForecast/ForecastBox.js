@@ -8,7 +8,7 @@ const ForecastBox = styled(Box)`
   vertical-align: top;
   text-align: center;
 
-  background-color: white;
+  background-color: ${colors.white};
   transition: background-color 0.2s ease-out;
 
   &:hover {

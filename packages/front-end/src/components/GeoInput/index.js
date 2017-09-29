@@ -1,19 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import updateStateByPath from 'utils/updateStateByPath';
-
 import StyledAsyncSelect from './StyledAsyncSelect';
 
 class GeoInput extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      value: null,
-    };
-  }
-
   getSuggestions = input =>
     fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
       .then(response => response.ok ? response.json() : response.status)
@@ -57,18 +47,13 @@ class GeoInput extends React.Component {
         });
       });
 
-  onChange = value => {
-    updateStateByPath(this, 'value', value);
-    if (this.props.onSelect) this.props.onSelect(value);
-  }
-
   render() {
     return (
       <div>
         <StyledAsyncSelect
-          value={this.state.value}
+          value={this.props.value}
+          onChange={this.props.onChange}
           loadOptions={this.getSuggestions}
-          onChange={this.onChange}
 
           placeholder='Search for a location'
           loadingPlaceholder='Getting suggestions...'
@@ -80,7 +65,11 @@ class GeoInput extends React.Component {
 }
 
 GeoInput.propTypes = {
-  onSelect: PropTypes.func,
+  value: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }),
+  onChange: PropTypes.func.isRequired,
 };
 
 export default GeoInput;

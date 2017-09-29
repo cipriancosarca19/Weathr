@@ -101,6 +101,7 @@ const AppHeader = styled.header`
 
       return `
         width: 100%;
+        height: 17.6rem;
         padding: 0 1.6rem;
 
         position: absolute;
@@ -119,6 +120,7 @@ const AppHeader = styled.header`
 
     return `
       width: 100%;
+      height: 17.6rem;
       position: relative;
       z-index: 3;
 

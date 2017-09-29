@@ -4,8 +4,7 @@ import AppContainer from './AppContainer';
 import AppFooter from './AppFooter';
 import ContentContainer from './ContentContainer';
 
-import * as Logo from './Logo';
-import GitHub from './GitHub';
+import Logo from './Logo';
 
 import InlineText from './InlineText';
 import UnitSwitch from './UnitSwitch';
@@ -18,7 +17,6 @@ export {
   ContentContainer,
 
   Logo,
-  GitHub,
 
   InlineText,
   UnitSwitch,

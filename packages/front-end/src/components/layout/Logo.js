@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import LogoSun from 'assets/images/logo/weathr_sun.svg';
@@ -14,17 +15,20 @@ const Sun = styled.div`
 
 const Text = styled.h1`
   width: 12rem;
-  height: 4.8rem;
-  margin: 0 auto;
-  padding-bottom: 0.8rem;
+  height: 4rem;
+  margin: 0 auto 0.8rem;
 
   overflow: hidden;
   text-indent: -9999px;
 
-  background: url(${LogoText}) 0 0/12rem 4rem no-repeat;
+  background: url(${LogoText}) center/cover no-repeat;
 `;
 
-export {
-  Sun,
-  Text,
-};
+const Logo = props => (
+  <div>
+    <Sun />
+    <Text>Weathr</Text>
+  </div>
+);
+
+export default Logo;
