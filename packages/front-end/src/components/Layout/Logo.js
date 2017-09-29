@@ -21,7 +21,7 @@ const Text = styled.h1`
   overflow: hidden;
   text-indent: -9999px;
 
-  background: url(${LogoText}) center/cover no-repeat;
+  background: url(${LogoText}) center/12rem 4rem no-repeat;
 `;
 
 const Logo = props => (
