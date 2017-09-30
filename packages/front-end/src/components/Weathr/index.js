@@ -69,7 +69,7 @@ class Weathr extends React.Component {
     navigator.geolocation.getCurrentPosition(position => {
       const posStr = `${position.coords.latitude}, ${position.coords.longitude}`;
       updateStateByPath(this, 'queryObj', { value: posStr, label: posStr });
-    });
+    }, err => console.error(err));
   }
 
   getForecast = (query=this.state.queryObj.value) => {
