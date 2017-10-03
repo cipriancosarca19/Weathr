@@ -36,75 +36,92 @@ const buildGoogleError = (status, locationQuery) => {
 const autocomplete = locationQuery =>
   new Promise((resolve, reject) => {
     const autocompleteURL = buildAutocompleteURL(locationQuery);
-    log.extra(`[API]: Making autocomplete request with '${autocompleteURL}'`);
+    log.verbose('Sending autocomplete request...');
+    log.silly(`Autocomplete URL: ${autocompleteURL}`);
 
     axios.get(autocompleteURL)
       .then(response => {
         const status = response.data.status;
         if (status !== 'OK') {
           const { message, code } = buildGoogleError(status, locationQuery);
-          
-          log.error(`[API]: Autocomplete request failed: ${message}`);
+          log.error(`Autocomplete request failed: ${message} [${code}]!`);
+
           reject({
             message,
             code,
           });
-
-          return;
         }
 
-        log.success(`[API]: Autocomplete request succeeded`);
-        resolve({
+        const result = {
           predictions: response.data.predictions,
-        });
+        };
+        log.verbose('Autocomplete request succeeded!');
+        log.silly(`Autocomplete response: ${JSON.stringify(result)}`);
+
+        resolve(result);
       })
-      .catch(err => reject(err));
+      .catch(err => {
+        log.error(err);
+        reject(err);
+      });
   });
 
 const geocode = locationQuery =>
   new Promise((resolve, reject) => {
     const geocodeURL = buildGeocodeURL(locationQuery);
-    log.extra(`[API]: Making geocode request with '${geocodeURL}'`);
+    log.verbose('Sending geocode request...');
+    log.silly(`Geocode URL: ${geocodeURL}`);
 
     axios.get(geocodeURL)
       .then(response => {
         const status = response.data.status;
         if (status !== 'OK') {
           const { message, code } = buildGoogleError(status, locationQuery);
+          log.error(`Geocode request failed: ${message} [${code}]!`);
 
-          log.error(`[API]: Geocode request failed: ${message}`);
           reject({
             message,
             code,
           });
-
-          return;
         }
 
-        log.success(`[API]: Geocode request succeeded`);
-        resolve({
+        const result = {
           address: response.data.results[0].formatted_address,
           lat: response.data.results[0].geometry.location.lat,
           lng: response.data.results[0].geometry.location.lng,
-        });
+        };
+        log.verbose('Geocode request succeeded!');
+        log.silly(`Geocode response: ${JSON.stringify(result)}`);
+
+        resolve(result);
       })
-      .catch(err => reject(err));
+      .catch(err => {
+        log.error(err);
+        reject(err);
+      });
   });
 
 const forecast = (lat, lng, units) =>
   new Promise((resolve, reject) => {
     const forecastURL = buildForecastURL(lat, lng, units);
-    log.extra(`[API]: Making forecast request with '${forecastURL}'`);
+    log.verbose('Sending forecast request...');
+    log.silly(`Forecast URL: ${forecastURL}`);
 
     axios.get(forecastURL)
       .then(response => {
-        log.success(`[API]: Forecast request succeeded`);
-        resolve({
+        const result = {
           currently: response.data.currently ? response.data.currently : null,
           daily: response.data.daily ? response.data.daily : null,
-        });
+        };
+        log.verbose('Forecast request succeeded!');
+        log.silly(`Forecast response: ${JSON.stringify(result)}`);
+
+        resolve(result);
       })
-      .catch(err => reject(err));
+      .catch(err => {
+        log.error(err);
+        reject(err);
+      });
   });
 
 module.exports = {

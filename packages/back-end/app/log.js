@@ -1,16 +1,19 @@
-const chalk = require('chalk');
+const winston = require('winston');
 
-module.exports = {
-  info(message) {
-    console.log(chalk.white(message));
-  },
-  success(message) {
-    console.log(chalk.green.bold(message));
-  },
-  error(message) {
-    console.log(chalk.red.bold(message));
-  },
-  extra(message) {
-    console.log(chalk.gray(message));
-  }
-};
+const log = new (winston.Logger)({
+  level: process.env.NODE_ENV === 'development' ? 'silly' : 'info',
+  transports: [
+    new (winston.transports.Console)(),
+    new (winston.transports.File)({
+      name: 'server.log',
+      filename: 'log/server.log'
+    }),
+    new (winston.transports.File)({
+      name: 'error.log',
+      filename: 'log/error.log',
+      level: 'error',
+    })
+  ],
+});
+
+module.exports = log;
