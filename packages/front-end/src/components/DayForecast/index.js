@@ -20,14 +20,14 @@ const DayForecast = (props) => {
   return (
     <ForecastBox w={[1, 1/2, 1/4]} pt='1.2rem'>
       <Text f='1.4rem'>{time.format('dddd')}</Text>
-      <Text f='1rem' color='gray.6'>{time.format('MMMM Do, YYYY')}</Text>
-      <Divider w='97%' color='gray.1' />
+      <Text f='1rem' color='gray6'>{time.format('MMMM Do, YYYY')}</Text>
+      <Divider w='97%' color='gray1' />
       <Image
         src={getWeatherSummaryIcon(props.forecast.icon)}
         alt={`Weather summary for ${time.format('MMMM Do, YYYY')} as an icon: ${props.forecast.icon}`}
         mx='auto'
       />
-      <Divider w='97%' color='gray.1' />
+      <Divider w='97%' color='gray1' />
       <Box px='0.3rem'>
         <TemperatureText
           w={1/2}
@@ -50,7 +50,7 @@ const DayForecast = (props) => {
           {`\u25B2${props.forecast.temperatureHigh} \u00B0${props.units === 'us' ? 'F' : 'C'}`}
         </TemperatureText>
       </Box>
-      <Divider w='97%' color='gray.1' />
+      <Divider w='97%' color='gray1' />
       <Box px='0.3rem' pb='0.8rem'>
         {
           props.forecast.precipProbability ? (
