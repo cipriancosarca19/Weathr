@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { Box } from 'rebass';
 
 const ShowContent = keyframes`
   from {
@@ -12,8 +13,8 @@ const ShowContent = keyframes`
   }
 `;
 
-const ContentContainer = styled.section`
-  margin-top: 1.2rem;
+const ContentContainer = styled(Box)`
+  margin: 1.2rem auto;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
   
   position: relative;

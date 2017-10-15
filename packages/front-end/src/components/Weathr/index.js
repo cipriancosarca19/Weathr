@@ -99,7 +99,7 @@ class Weathr extends React.Component {
   renderForecast = () => {
     return (
       <div>
-        <Layout.ContentContainer>
+        <Layout.ContentContainer w={['20rem', '40rem', 1]}>
           {this.state.forecast.data[this.state.units].daily.data.map(day => (
             <DayForecast key={day.time} forecast={day} units={this.state.units} />
           ))}
