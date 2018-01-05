@@ -1,0 +1,15 @@
+{
+  "short_name": "Weathr",
+  "name": "Weathr - A fancy-shmancy weather forecast application",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#FF0041",
+  "background_color": "#FDA6C4"
+}
