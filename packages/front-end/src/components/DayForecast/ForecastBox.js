@@ -4,7 +4,7 @@ import { Box } from 'rebass';
 import colors from 'theme/colors'
 
 const ForecastBox = styled(Box)`
-  display: inline-block;
+  width: auto;
   vertical-align: top;
   text-align: center;
 
