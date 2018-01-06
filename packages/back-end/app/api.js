@@ -50,6 +50,8 @@ const autocomplete = locationQuery =>
             message,
             code,
           });
+
+          return;
         }
 
         const result = {
@@ -83,6 +85,8 @@ const geocode = locationQuery =>
             message,
             code,
           });
+
+          return;
         }
 
         const result = {
