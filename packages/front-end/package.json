@@ -1,6 +1,6 @@
 {
   "name": "weathr-front-end",
-  "homepage": "https://mannie-faux.github.io/weathr",
+  "homepage": "https://intrnt-dolphin.github.io/Weathr",
   "version": "1.0.1",
   "private": true,
   "author": "Manpreet \"Mannie\" Singh",
@@ -9,7 +9,7 @@
     "start": "cross-env NODE_PATH=./src HTTPS=true react-scripts start",
     "build": "cross-env NODE_PATH=./src react-scripts build",
     "test": "cross-env NODE_PATH=./src HTTPS=true react-scripts test --env=jsdom",
-    "predeploy": "cross-env NODE_PATH=./src yarn build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
