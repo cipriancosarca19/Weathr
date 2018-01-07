@@ -1,12 +1,16 @@
 const winston = require('winston');
 
+const LOG_LEVEL = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test' ? 'silly' : 'info';
+
 const log = new (winston.Logger)({
-  level: process.env.NODE_ENV === 'development' ? 'silly' : 'info',
+  level: LOG_LEVEL,
   transports: [
-    new (winston.transports.Console)(),
+    new (winston.transports.Console)({
+      silent: process.env.NODE_ENV === 'test' ? true : false,
+    }),
     new (winston.transports.File)({
       name: 'server.log',
-      filename: 'log/server.log'
+      filename: 'log/server.log',
     }),
     new (winston.transports.File)({
       name: 'error.log',
