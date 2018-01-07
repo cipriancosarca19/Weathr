@@ -18,7 +18,7 @@
     "node": "9.3.0"
   },
   "scripts": {
-    "start": "pm2 start app/index.js --name weathr_back-end -i 0",
+    "start": "node app/index.js",
     "dev": "cross-env NODE_ENV=development pm2 start app/index.js --name weathr_back-end_dev --watch",
     "test": "ava | tnyan"
   },
