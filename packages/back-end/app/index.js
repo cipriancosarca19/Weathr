@@ -5,8 +5,7 @@ const API = require('./api');
 const log = require('./log');
 
 log.silly('Welcome to Weathr\'s back-end service!');
-const weathr = new Hapi.Server();
-weathr.connection({
+const weathr = new Hapi.Server({
   port: process.env.PORT || 2999,
   host: '0.0.0.0',
   routes: { cors: true },
@@ -15,11 +14,11 @@ log.verbose(`Instantiated Hapi.js server on port: ${process.env.PORT}`);
 
 /**
  * Primary forecast route
- * 
+ *
  * Uses Google Maps' API to geocode and DarkSky's
  * API to fetch location forecast information, and
  * returns it to the client.
- * 
+ *
  * @param  {string} locationQuery
  * @param  {string} units (optinal)
  * @return {object}
@@ -71,11 +70,11 @@ log.verbose('Setup server route: /forecast/{locationQuery}/{units?}');
 
 /**
  * Location autocomplete route
- * 
+ *
  * Uses Google Places' Autocomplete API to fetch
  * location query predictions, and returns them
  * to the client for better UX.
- * 
+ *
  * @param  {string} locationQuery
  * @return {object}
  */
