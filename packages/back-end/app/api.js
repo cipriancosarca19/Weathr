@@ -2,9 +2,9 @@ const axios = require('axios');
 const log = require('./log');
 
 const buildAutocompleteURL = locationQuery =>
-  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&input=${locationQuery}`;
+  `https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyAdmQXE-SDOEyletotMAFGD7ryYmNCtEUk&input=${locationQuery}`;
 const buildGeocodeURL = locationQuery =>
-  `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyDjh11j9IJHALxDJd4z--VMuTLpAEbANyA&address=${locationQuery}`;
+  `https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyAdmQXE-SDOEyletotMAFGD7ryYmNCtEUk&address=${locationQuery}`;
 const buildForecastURL = (lat, lng, units) =>
   `https://api.darksky.net/forecast/9c05b6662a30448a33162cc584b4a264/${lat},${lng}?units=${units}&exclude=[minutely,hourly,alerts,flags]`;
 
