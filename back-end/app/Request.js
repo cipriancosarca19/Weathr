@@ -38,7 +38,7 @@ async function autocomplete(query) {
 
   if (response.data.status !== 'OK') {
     const gError = resolveGoogleError(response.data.status, query);
-    log.error('Autocomplete request failed', gError);
+    log.error('Autocomplete request failed', { error: gError });
 
     const error = new Error(gError.message);
     error.code = gError.code;
@@ -48,7 +48,7 @@ async function autocomplete(query) {
   }
 
   log.info('Autocomplete request completed successfully');
-  log.silly('Autocomplete request completed', reqURL, response.data);
+  log.silly('Autocomplete request completed', { reqURL, data: response.data });
 
   return response.data;
 }
@@ -64,12 +64,11 @@ async function geocode(query) {
     return;
   }
 
-  console.log(reqURL);
   const response = await axios.get(reqURL);
 
   if (response.data.status !== 'OK') {
     const gError = resolveGoogleError(response.data.status, query);
-    log.error('Geocode request failed', gError);
+    log.error('Geocode request failed', { error: gError });
 
     const error = new Error(gError.message);
     error.code = gError.code;
@@ -79,12 +78,44 @@ async function geocode(query) {
   }
 
   log.info('Geocode request completed successfully');
-  log.silly('Geocode request completed', reqURL, response.data);
+  log.silly('Geocode request completed', { reqURL, data: response.data });
 
   return response.data;
 }
 
-async function forecast(lat, lng) {}
+async function forecast(lat, lng) {
+  log.verbose('Initiating forecast request...');
+
+  let reqURL;
+  try {
+    reqURL = URLBuilder.forecast(lat, lng);
+  } catch(error) {
+    log.error('Failed to build forecast request URL', { reason: error.message });
+    return;
+  }
+
+  const response = await axios.get(reqURL);
+
+  if (response.statusText !== 'OK') {
+    log.error('Forecast request failed', { error: {
+      message: response.statusText,
+      code: response.status,
+    }});
+
+    // TODO: Better handle DarkSky API errors
+    throw new Error('Forecast request failed');
+
+    return;
+  }
+
+  const results = {
+    currently: response.data.currently ? response.data.currently : null,
+    daily: response.data.daily ? response.data.daily : null,
+    status: response.statusText,
+  };
+
+  return results;
+}
 
 module.exports = {
   autocomplete,
