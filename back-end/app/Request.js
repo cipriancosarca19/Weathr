@@ -49,10 +49,15 @@ async function autocomplete(query) {
     return error;
   }
 
-  log.info('Autocomplete request completed successfully');
-  log.silly('Autocomplete request completed', { reqURL, data: response.data });
+  const autocompleteResults = {
+    predictions: response.data.predictions,
+    status: response.data.status,
+  };
 
-  return response.data;
+  log.info('Autocomplete request completed successfully');
+  log.silly('Autocomplete request completed', { reqURL, data: autocompleteResults });
+
+  return autocompleteResults;
 }
 
 async function geocode(query) {
@@ -79,10 +84,17 @@ async function geocode(query) {
     return error;
   }
 
-  log.info('Geocode request completed successfully');
-  log.silly('Geocode request completed', { reqURL, data: response.data });
+  const geocodedLocation = {
+    address: response.data.results[0].formatted_address,
+    lat: response.data.results[0].geometry.location.lat,
+    lng: response.data.results[0].geometry.location.lng,
+    status: response.data.status,
+  };
 
-  return response.data;
+  log.info('Geocode request completed successfully');
+  log.silly('Geocode request completed', { reqURL, data: geocodedLocation });
+
+  return geocodedLocation;
 }
 
 async function forecast(lat, lng) {
@@ -110,13 +122,13 @@ async function forecast(lat, lng) {
     return;
   }
 
-  const results = {
+  const forecast = {
     currently: response.data.currently ? response.data.currently : null,
     daily: response.data.daily ? response.data.daily : null,
     status: response.statusText,
   };
 
-  return results;
+  return forecast;
 }
 
 module.exports = {
