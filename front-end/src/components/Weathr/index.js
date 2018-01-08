@@ -108,7 +108,7 @@ class Weathr extends React.Component {
           <Divider color='secondary' />
           <Text color='darkBase' mb='0.2rem' is='a' target='_blank' href='https://darksky.net/poweredby/'>Powered by Dark Sky</Text>
           <br />
-          <Text color='darkBase' f='1.2rem' is='a' target='_blank' href='https://github.com/mannie-faux/weathr/'>mannie-faux/weathr @ GitHub</Text>
+          <Text color='darkBase' f='1.2rem' is='a' target='_blank' href='https://github.com/intrnt-dolphin/Weathr/'>intrnt-dolphin/Weathr @ GitHub</Text>
         </Layout.AppFooter>
       </div>
     );

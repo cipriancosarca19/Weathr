@@ -1,7 +1,7 @@
 <p align="center">
-    <img src="front-end/src/assets/images/logo/weathr_sun.png" alt="Weathr Sun" />
+    <img src="front-end/src/assets/images/logo/weathr_sun.svg" alt="Weathr Sun" width="80px" />
     <br />
-    <img src="front-end/src/assets/images/logo/weathr_text.png" alt="Weathr" />
+    <img src="front-end/src/assets/images/logo/weathr_text.svg" alt="Weathr" width="120px" />
 </p>
 
 # Weathr :cloud:
@@ -18,12 +18,10 @@ Check out [front-end](front-end) and [back-end](back-end) for the respective sou
 ### General
 Technology | Usage
 --- | ---
-[Lerna][lerna] | Multi-package management
 [Google Maps API][google-maps-api] | Location geocoding
 [Google Places API][google-places-api] | Location input autocompletion
 [Dark Sky API][dark-sky-api] | Weather forecast data
 
-[lerna]: https://lernajs.io/
 [google-maps-api]: https://developers.google.com/maps/
 [google-places-api]: https://developers.google.com/places/
 [dark-sky-api]: https://darksky.net/dev
@@ -46,10 +44,14 @@ Technology | Usage
 --- | ---
 [Hapi.js][hapi-js] | Server framework
 [Axios][axios] | Promse-based HTTP-client library
+[AVA][ava] | JavaScript test-runner and assertion library
+[Winston][winston] | Logging library
 [Heroku][heroku] | Cloud application hosting service
 
 [hapi-js]: https://hapijs.com/
 [axios]: https://github.com/mzabriskie/axios
+[ava]: https://github.com/avajs/ava
+[winston]: https://github.com/winstonjs/winston
 [heroku]: https://www.heroku.com/home
 
 Checkout `{front-end,back-end}/package.json` for the rest.
