@@ -1,7 +1,7 @@
 <p align="center">
-    <img src="packages/front-end/src/assets/images/logo/weathr_sun.png" alt="Weathr Sun" />
+    <img src="front-end/src/assets/images/logo/weathr_sun.png" alt="Weathr Sun" />
     <br />
-    <img src="packages/front-end/src/assets/images/logo/weathr_text.png" alt="Weathr" />
+    <img src="front-end/src/assets/images/logo/weathr_text.png" alt="Weathr" />
 </p>
 
 # Weathr :cloud:
@@ -9,7 +9,7 @@ Just another fancy-schmancy weather-forecast-as-a-portfolio-piece application.
 
 Live @ https://mannie-faux.github.io/weathr/
 
-Check out [packages/front-end](packages/front-end) and [packages/back-end](packages/back-end) for the respective source codes.
+Check out [front-end](front-end) and [back-end](back-end) for the respective source codes.
 
 ---
 
@@ -52,4 +52,4 @@ Technology | Usage
 [axios]: https://github.com/mzabriskie/axios
 [heroku]: https://www.heroku.com/home
 
-Checkout `packages/{front-end,back-end}/package.json` for the rest.
+Checkout `{front-end,back-end}/package.json` for the rest.
