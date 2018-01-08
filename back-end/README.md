@@ -1,7 +1,7 @@
 # Weather :cloud:
 A Node.js-based back-end for Weathr written with Hapi.js.
 
-Live @ https://mannie-faux-weathr.herokuapp.com/
+Live @ https://intrnt-dolphin-weathr.herokuapp.com/
 
 ---
 
