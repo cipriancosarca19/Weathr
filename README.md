@@ -7,7 +7,7 @@
 # Weathr :cloud:
 Just another fancy-schmancy weather-forecast-as-a-portfolio-piece application.
 
-Live @ https://mannie-faux.github.io/weathr/
+Live @ https://intrnt-dolphin.github.io/weathr/
 
 Check out [front-end](front-end) and [back-end](back-end) for the respective source codes.
 
