@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.4daefbf8.css",
   "main.css.map": "static/css/main.4daefbf8.css.map",
-  "main.js": "static/js/main.0d866a6c.js",
-  "main.js.map": "static/js/main.0d866a6c.js.map",
+  "main.js": "static/js/main.841dfb91.js",
+  "main.js.map": "static/js/main.841dfb91.js.map",
   "static\\media\\clear-day.svg": "static/media/clear-day.53f709c5.svg",
   "static\\media\\clear-night.svg": "static/media/clear-night.b87ca8b6.svg",
   "static\\media\\cloudy.svg": "static/media/cloudy.79b3c647.svg",
@@ -14,7 +14,7 @@
   "static\\media\\snow.svg": "static/media/snow.20379c89.svg",
   "static\\media\\thunderstorm.svg": "static/media/thunderstorm.1afe7efd.svg",
   "static\\media\\tornado.svg": "static/media/tornado.b6e81ba5.svg",
-  "static\\media\\weathr_sun.svg": "static/media/weathr_sun.3070324b.svg",
-  "static\\media\\weathr_text.svg": "static/media/weathr_text.4f26ce81.svg",
+  "static\\media\\weathr_sun.svg": "static/media/weathr_sun.21174bda.svg",
+  "static\\media\\weathr_text.svg": "static/media/weathr_text.b3d51d14.svg",
   "static\\media\\wind.svg": "static/media/wind.6b4d1006.svg"
 }
