@@ -19,13 +19,12 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=./app node app/index.js",
-    "dev": "cross-env NODE_ENV=development NODE_PATH=./app pm2 start app/index.js --name weathr_back-end_dev --watch",
+    "dev": "cross-env NODE_ENV=development NODE_PATH=./app node app/index.js",
     "test": "cross-env NODE_ENV=test NODE_PATH=./app ava | tnyan"
   },
   "dependencies": {
     "axios": "^0.17.1",
     "hapi": "^17.2.0",
-    "pm2": "^2.9.1",
     "winston": "^2.4.0"
   },
   "devDependencies": {
