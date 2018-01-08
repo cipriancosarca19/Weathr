@@ -1,4 +1,4 @@
-const log = require('utils/log');
+const log = require('log');
 
 const GMAPS_KEY = 'AIzaSyAdmQXE-SDOEyletotMAFGD7ryYmNCtEUk';
 const DSKY_KEY = '9c05b6662a30448a33162cc584b4a264';
