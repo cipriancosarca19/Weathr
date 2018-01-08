@@ -7,7 +7,7 @@ test('make an autocomplete request to Google Places API', async t => {
 });
 
 test('make a geocode request to Google Maps API', async t => {
-  const response = await Request.geocode('Cincinnati+OH+USA');
+  const response = await Request.geocode('Cincinnati+OH+US');
   t.is(response.status, 'OK');
 });
 

@@ -24,7 +24,7 @@ const breakBuilder = (t, builder, expectedMessage, ...rest) => {
   test('build geocode request URL',
         runBuilder,
         URLBuilder.geocode,
-        `https://maps.googleapis.com/maps/api/geocode/json?key=${URLBuilder.GMAPS_KEY}&input=${query}`,
+        `https://maps.googleapis.com/maps/api/geocode/json?key=${URLBuilder.GMAPS_KEY}&address=${query}`,
         query);
 
   test('build forecast request URL',

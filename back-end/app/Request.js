@@ -29,7 +29,6 @@ async function autocomplete(query) {
   let reqURL;
   try {
     reqURL = URLBuilder.autocomplete(query);
-    log.silly('Built autocomplete request URL', { reqURL });
   } catch(error) {
     log.error('Failed to build autocomplete request URL', { reason: error.message });
     return;
@@ -54,7 +53,36 @@ async function autocomplete(query) {
   return response.data;
 }
 
-async function geocode(query) {}
+async function geocode(query) {
+  log.verbose('Initiating geocode request...');
+
+  let reqURL;
+  try {
+    reqURL = URLBuilder.geocode(query);
+  } catch(error) {
+    log.error('Failed to build geocode request URL', { reason: error.message });
+    return;
+  }
+
+  console.log(reqURL);
+  const response = await axios.get(reqURL);
+
+  if (response.data.status !== 'OK') {
+    const gError = resolveGoogleError(response.data.status, query);
+    log.error('Geocode request failed', gError);
+
+    const error = new Error(gError.message);
+    error.code = gError.code;
+    throw error;
+
+    return;
+  }
+
+  log.info('Geocode request completed successfully');
+  log.silly('Geocode request completed', reqURL, response.data);
+
+  return response.data;
+}
 
 async function forecast(lat, lng) {}
 

@@ -31,7 +31,7 @@ function geocode(query) {
 
   if (!checkQueryType(query)) return;
 
-  const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?key=${GMAPS_KEY}&input=${query}`;
+  const geocodeURL = `https://maps.googleapis.com/maps/api/geocode/json?key=${GMAPS_KEY}&address=${query}`;
   log.silly('Geocode request URL built successfully', { geocodeURL });
 
   return geocodeURL;
