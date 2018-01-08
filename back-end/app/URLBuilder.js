@@ -3,7 +3,7 @@ const log = require('log');
 const GMAPS_KEY = 'AIzaSyAdmQXE-SDOEyletotMAFGD7ryYmNCtEUk';
 const DSKY_KEY = '9c05b6662a30448a33162cc584b4a264';
 
-const checkQueryType = query => {
+function checkQueryType(query) {
   if (typeof query !== 'string') {
     const errorMessage = `Incorrect query type '${typeof query}' (expected 'string')`;
     log.error(errorMessage, { query });
@@ -13,9 +13,9 @@ const checkQueryType = query => {
   }
 
   return true;
-};
+}
 
-const autocomplete = query => {
+function autocomplete(query) {
   log.silly(`Building autocomplete request URL with query '${query}'...`);
 
   if (!checkQueryType(query)) return;
@@ -24,9 +24,9 @@ const autocomplete = query => {
   log.silly('Autocomplete request URL built successfully', { autocompleteURL });
 
   return autocompleteURL;
-};
+}
 
-const geocode = query => {
+function geocode(query) {
   log.silly(`Building geocode request URL with query '${query}'...`);
 
   if (!checkQueryType(query)) return;
@@ -35,9 +35,9 @@ const geocode = query => {
   log.silly('Geocode request URL built successfully', { geocodeURL });
 
   return geocodeURL;
-};
+}
 
-const forecast = (lat, lng) => {
+function forecast(lat, lng) {
   log.silly(`Building forecast request URL with lat/lng '${lat}/${lng}'...`);
 
   if (typeof lat !== 'number' || typeof lng !== 'number') {
@@ -52,7 +52,7 @@ const forecast = (lat, lng) => {
   log.silly('Forecast request URL built successfully', { forecastURL });
 
   return forecastURL;
-};
+}
 
 module.exports = {
   GMAPS_KEY,
