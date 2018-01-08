@@ -1,3 +1,5 @@
+'use strict';
+
 const axios = require('axios');
 const URLBuilder = require('URLBuilder');
 const log = require('./log');
@@ -44,7 +46,7 @@ async function autocomplete(query) {
     error.code = gError.code;
     throw error;
 
-    return;
+    return error;
   }
 
   log.info('Autocomplete request completed successfully');
@@ -74,7 +76,7 @@ async function geocode(query) {
     error.code = gError.code;
     throw error;
 
-    return;
+    return error;
   }
 
   log.info('Geocode request completed successfully');

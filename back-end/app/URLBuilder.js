@@ -1,3 +1,5 @@
+'use strict';
+
 const log = require('log');
 
 const GMAPS_KEY = 'AIzaSyAdmQXE-SDOEyletotMAFGD7ryYmNCtEUk';

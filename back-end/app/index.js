@@ -1,8 +1,8 @@
 'use strict';
 
 const Hapi = require('hapi');
-const API = require('./api');
-const log = require('./log');
+const log = require('log');
+const Request = require('Request');
 
 log.silly('Welcome to Weathr\'s back-end service!');
 const weathr = new Hapi.Server({
@@ -10,7 +10,6 @@ const weathr = new Hapi.Server({
   host: '0.0.0.0',
   routes: { cors: true },
 });
-log.verbose(`Instantiated Hapi.js server on port: ${process.env.PORT}`);
 
 /**
  * Primary forecast route
@@ -19,54 +18,36 @@ log.verbose(`Instantiated Hapi.js server on port: ${process.env.PORT}`);
  * API to fetch location forecast information, and
  * returns it to the client.
  *
- * @param  {string} locationQuery
- * @param  {string} units (optinal)
+ * @param  {string} query
  * @return {object}
  */
 weathr.route({
   method: 'GET',
-  path: '/forecast/{locationQuery}/{units?}',
-  handler: (request, reply) => {
-    log.verbose(`GET: ${request.url.path}`);
+  path: '/forecast/{query}',
+  handler: async (request, h) => {
+    let geocodeResponse;
+    let forecastResponse;
 
-    let units = 'us';
-    if (request.params.units) {
-      if (request.params.units === 'us' || request.params.units === 'si') units = request.params.units;
-      else {
-        log.error(`Invalid units specified '${request.params.units}'`);
-        reply('Invalid units specified: must be \'us\' (imperical), \'si\' (standard), or empty (defaults to imperical)').code(400);
-        return;
-      }
+    try {
+      geocodeResponse = await Request.geocode(request.params.query);
+    } catch(error) {
+      log.error(error);
+      return error;
     }
 
-    API.geocode(request.params.locationQuery)
-      .then(geocodeResponse => {
-        API.forecast(geocodeResponse.lat, geocodeResponse.lng, units)
-          .then(forecastResponse => {
-            reply({
-              location: geocodeResponse,
-              weather: forecastResponse,
-            });
-          })
-          .catch(err => {
-            log.error(err);
-            reply(err).code(500);
-            return;
-          });
-      })
-      .catch(err => {
-        if (err.message && err.code) {
-          log.error(err.message);
-          reply(err.message).code(err.code);
-          return;
-        }
-        log.error(err);
-        reply(err).code(500);
-        return;
-      });
+    try {
+      forecastResponse = await Request.forecast(geocodeResponse.lat, geocodeResponse.lng);
+    } catch(error) {
+      log.error(error);
+      return error;
+    }
+
+    return {
+      location: geocodeResponse,
+      weather: forecastResponse,
+    };
   },
 });
-log.verbose('Setup server route: /forecast/{locationQuery}/{units?}');
 
 /**
  * Location autocomplete route
@@ -75,34 +56,35 @@ log.verbose('Setup server route: /forecast/{locationQuery}/{units?}');
  * location query predictions, and returns them
  * to the client for better UX.
  *
- * @param  {string} locationQuery
+ * @param  {string} query
  * @return {object}
  */
 weathr.route({
   method: 'GET',
-  path: '/autocomplete/{locationQuery}',
-  handler: (request, reply) => {
-    log.verbose(`GET: ${request.url.path}`);
+  path: '/autocomplete/{query?}',
+  handler: async (request, h) => {
+    if (!request.params.query) {
+      // Better identify this case on the front-end
+      return "Route left open due to front-end implementation. Please use '/autocomplete/{query}' for actual autocomplete";
+    }
 
-    API.autocomplete(request.params.locationQuery)
-      .then(autocompleteResponse => {
-        reply(autocompleteResponse);
-      })
-      .catch(err => {
-        if (err.message && err.code) {
-          log.error(err.message);
-          reply(err.message).code(err.code);
-          return;
-        }
-        log.error(err);
-        reply(err).code(500);
-        return;
-      });
+    let autocompleteResponse;
+
+    try {
+      autocompleteResponse = Request.autocomplete(request.params.query);
+    } catch(error) {
+      log.error(error);
+      return error;
+    }
+
+    return autocompleteResponse;
+  },
+});
+
+(async () => {
+  try {
+    await weathr.start();
+  } catch (error) {
+    log.error(error);
   }
-});
-log.verbose('Setup server route: /autocomplete/{locationQuery}');
-
-weathr.start(err => {
-  if (err) throw err;
-  log.info(`Hapi.js server started at ${weathr.info.uri}`);
-});
+})();
