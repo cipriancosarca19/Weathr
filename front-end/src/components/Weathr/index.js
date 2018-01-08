@@ -74,7 +74,7 @@ class Weathr extends React.Component {
 
   getForecast = (query=this.state.queryObj.value) => {
     updateStateByPath(this, 'forecast.isLoading', true);
-    fetch(`https://mannie-faux-weathr.herokuapp.com/forecast/${query}`)
+    fetch(`https://intrnt-dolphin-weathr.herokuapp.com/forecast/${query}`)
       .then(response => response.json())
       .then(data => updateStateByPath(this, 'forecast', {
         isLoading: false,

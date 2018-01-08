@@ -5,7 +5,7 @@ import StyledAsyncSelect from './StyledAsyncSelect';
 
 class GeoInput extends React.Component {
   getSuggestions = input =>
-    fetch(`https://mannie-faux-weathr.herokuapp.com/autocomplete/${input}`)
+    fetch(`https://intrnt-dolphin-weathr.herokuapp.com/autocomplete/${input}`)
       .then(response => response.ok ? response.json() : response.status)
       .then(data => {
         if (typeof data === 'number') {
@@ -36,7 +36,7 @@ class GeoInput extends React.Component {
               });
           }
         }
-        
+
         if (!Array.isArray(data.predictions) || !data.predictions.length) return;
 
         return ({
