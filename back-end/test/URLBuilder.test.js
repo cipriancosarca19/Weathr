@@ -35,38 +35,38 @@ const breakBuilder = (t, builder, expectedMessage, ...rest) => {
         queryLng);
 })();
 
-test('successfully fail on invalid query type during autocomplete request URL building: boolean',
+test('gracefully fail on invalid query type during autocomplete request URL building: boolean',
       breakBuilder,
       URLBuilder.autocomplete,
       `Incorrect query type 'boolean' (expected 'string')`,
       false);
 
-test('successfully fail on invalid query type during autocomplete request URL building: number',
+test('gracefully fail on invalid query type during autocomplete request URL building: number',
       breakBuilder,
       URLBuilder.autocomplete,
       `Incorrect query type 'number' (expected 'string')`,
       420);
 
-test('successfully fail on invalid query type during geocode request URL building: boolean',
+test('gracefully fail on invalid query type during geocode request URL building: boolean',
       breakBuilder,
       URLBuilder.geocode,
       `Incorrect query type 'boolean' (expected 'string')`,
       false);
 
-test('successfully fail on invalid query type during geocode request URL building: number',
+test('gracefully fail on invalid query type during geocode request URL building: number',
       breakBuilder,
       URLBuilder.geocode,
       `Incorrect query type 'number' (expected 'string')`,
       420);
 
-test('successfully fail on invalid lat/lng types during forecast request URL building: number/string',
+test('gracefully fail on invalid lat/lng types during forecast request URL building: number/string',
       breakBuilder,
       URLBuilder.forecast,
       `Incorrect lat/lng types of 'number' and 'string' (expected 'number' for both)`,
       39.1031182,
       '-84.5120196');
 
-test('successfully fail on invalid lat/lng types during forecast request URL building: boolean/number',
+test('gracefully fail on invalid lat/lng types during forecast request URL building: boolean/number',
       breakBuilder,
       URLBuilder.forecast,
       `Incorrect lat/lng types of 'boolean' and 'number' (expected 'number' for both)`,
